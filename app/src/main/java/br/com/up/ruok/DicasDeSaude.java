@@ -62,7 +62,6 @@ public class DicasDeSaude extends AppCompatActivity {
         btn_beneficios = findViewById(R.id.btn_beneficios);
         btn_liks = findViewById(R.id.btn_links);
     }
-
 //    private void goToPage() {
 //        Uri webpage = Uri.parse("https://vidasaudavel.einstein.br/como-cuidar-da-saude-mental/");
 //        Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
