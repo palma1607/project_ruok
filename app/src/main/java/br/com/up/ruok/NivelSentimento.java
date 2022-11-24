@@ -3,17 +3,18 @@ package br.com.up.ruok;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Set;
-
 public class NivelSentimento extends AppCompatActivity {
     private ImageView imageView_duvidas, muito_feliz_empty, muito_feliz_full, feliz_empty, feliz_full, meio_chateado_empty, meio_chateado_full, triste_empty, triste_full, muito_triste_empty, muito_triste_full;
-    private TextView textView_pergunta_do_dia, textView_dicas_de_saude, textView_alerta;
+    private TextView textView_pergunta_do_dia;
+    private TextView textView_dicas_de_saude;
+    private TextView textView_alerta;
+    private TextView textView_iDFuncionario;
+//    private TextView editText_idSetor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,13 @@ public class NivelSentimento extends AppCompatActivity {
         setContentView(R.layout.activity_nivel_sentimento);
         getSupportActionBar().hide();
         InstanciarElementos();
+
+        Bundle extras = getIntent().getExtras();
+        String idFuncionario = extras.getString("chave_idDigitado");
+        Intent intentNivelSentimento = getIntent();
+
+
+        textView_iDFuncionario.setText(idFuncionario);
 
         // Emojis
         muito_feliz_empty.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +133,9 @@ public class NivelSentimento extends AppCompatActivity {
 
         muito_triste_empty = findViewById(R.id.img_muito_triste_empty);
         muito_triste_full = findViewById(R.id.img_muito_triste_full);
+
+        textView_iDFuncionario = findViewById(R.id.textView_iDFuncionario);
+
     }
 
     public void SetInvisible(){
