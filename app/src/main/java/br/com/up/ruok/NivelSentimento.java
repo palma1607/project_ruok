@@ -3,18 +3,21 @@ package br.com.up.ruok;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Set;
+
+import br.com.up.ruok.models.Usuario;
+import br.com.up.ruok.network.ApiConnection;
+
 public class NivelSentimento extends AppCompatActivity {
     private ImageView imageView_duvidas, muito_feliz_empty, muito_feliz_full, feliz_empty, feliz_full, meio_chateado_empty, meio_chateado_full, triste_empty, triste_full, muito_triste_empty, muito_triste_full;
-    private TextView textView_pergunta_do_dia;
-    private TextView textView_dicas_de_saude;
-    private TextView textView_alerta;
-    private TextView textView_iDFuncionario;
-//    private TextView editText_idSetor;
+    private TextView textView_pergunta_do_dia, textView_dicas_de_saude, textView_alerta;
+    public Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +25,6 @@ public class NivelSentimento extends AppCompatActivity {
         setContentView(R.layout.activity_nivel_sentimento);
         getSupportActionBar().hide();
         InstanciarElementos();
-
-        Bundle extras = getIntent().getExtras();
-        String idFuncionario = extras.getString("chave_idDigitado");
-        Intent intentNivelSentimento = getIntent();
-
-
-        textView_iDFuncionario.setText(idFuncionario);
 
         // Emojis
         muito_feliz_empty.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +35,11 @@ public class NivelSentimento extends AppCompatActivity {
                 // TODO: Buscar dados com o backend API
                 textView_alerta.setText("Texto para o emoji Muito Feliz");
                 textView_alerta.setVisibility(View.VISIBLE);
+                Usuario user = new Usuario(1, 5, "2020-10-10");
+                ApiConnection api = new ApiConnection();
+                api.SendUserData(user);
+
+
             }
         });
         feliz_empty.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +50,7 @@ public class NivelSentimento extends AppCompatActivity {
                 // TODO: Buscar dados com o backend API
                 textView_alerta.setText("Texto para o emoji Feliz");
                 textView_alerta.setVisibility(View.VISIBLE);
+
             }
         });
         meio_chateado_empty.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +81,8 @@ public class NivelSentimento extends AppCompatActivity {
                 // TODO: Buscar dados com o backend API
                 textView_alerta.setText("Texto para o emoji Muito Triste");
                 textView_alerta.setVisibility(View.VISIBLE);
+
+
             }
         });
 
@@ -133,9 +137,6 @@ public class NivelSentimento extends AppCompatActivity {
 
         muito_triste_empty = findViewById(R.id.img_muito_triste_empty);
         muito_triste_full = findViewById(R.id.img_muito_triste_full);
-
-        textView_iDFuncionario = findViewById(R.id.textView_iDFuncionario);
-
     }
 
     public void SetInvisible(){

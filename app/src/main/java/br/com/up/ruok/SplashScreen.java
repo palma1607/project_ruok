@@ -25,7 +25,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     public void irParaMain() {
-        Intent intent = new Intent(SplashScreen.this, QrCode.class);
+        Intent intent = new Intent(SplashScreen.this, NivelSentimento.class);
         startActivity(intent);
         finish();
     }
